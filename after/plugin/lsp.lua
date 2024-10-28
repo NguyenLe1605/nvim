@@ -120,7 +120,9 @@ vim.api.nvim_create_autocmd("LspAttach", {
 --  - settings (table): Override the default settings passed when initializing the server.
 --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
 local servers = {
-	clangd = {},
+	clangd = {
+		cmd = { "clangd", "--background-index", "--clang-tidy", "--log=verbose" },
+	},
 	gopls = {},
 	pyright = {},
 	rust_analyzer = {},
@@ -273,31 +275,3 @@ cmp.setup({
 		{ name = "path" },
 	},
 })
--- local cmp = require('cmp')
---
--- cmp.setup({
---   sources = {
---     {name = 'nvim_lsp'},
---   },
---   mapping = cmp.mapping.preset.insert({
---     -- Navigate between completion items
---     ['<C-p>'] = cmp.mapping.select_prev_item({behavior = 'select'}),
---     ['<C-n>'] = cmp.mapping.select_next_item({behavior = 'select'}),
---
---     -- `Enter` key to confirm completion
---     ['<Tab>'] = cmp.mapping.confirm({select = false}),
---
---     -- Ctrl+Space to trigger completion menu
---     ['<C-Space>'] = cmp.mapping.complete(),
---
---     -- Scroll up and down in the completion documentation
---     ['<C-u>'] = cmp.mapping.scroll_docs(-4),
---     ['<C-d>'] = cmp.mapping.scroll_docs(4),
---   }),
---   snippet = {
---     expand = function(args)
---       vim.snippet.expand(args.body)
---     end,
---   },
--- })
---

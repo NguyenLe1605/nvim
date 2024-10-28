@@ -23,9 +23,19 @@ return { -- Autoformat
 				lsp_fallback = true,
 			}
 		end,
+		formatters = {
+			cpp_fmt = {
+				command = "clang-format",
+				args = { "--fallback-style", "google" },
+			},
+			c_fmt = {
+				command = "clang-format",
+				args = { "--fallback-style", "gnu" },
+			},
+		},
 		formatters_by_ft = {
 			lua = { "stylua" },
-			cpp = { "clang-format" },
+			-- cpp = { "cpp_fmt" },
 			cmake = { "cmake_format" },
 			rust = { "rustfmt" },
 			-- Conform can also run multiple formatters sequentially
